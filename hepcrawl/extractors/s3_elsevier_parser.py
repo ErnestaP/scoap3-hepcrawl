@@ -161,7 +161,7 @@ class S3ElsevierParser(object):
         for aff_id in ref_ids:
             ce_affiliation = author_group.xpath("//affiliation[@id='" + aff_id + "']")
             if ce_affiliation.xpath(".//affiliation"):
-                aff = ce_affiliation.xpath(".//*[self::organization or self::city or self::country]/text()")
+                aff = ce_affiliation.xpath(".//*[self::organization or self::city or self::country or self::address-line]/text()")
                 affiliations_by_id.append(", ".join(aff.extract()))
             elif ce_affiliation:
                 aff = ce_affiliation.xpath("./textfn/text()").extract_first()
