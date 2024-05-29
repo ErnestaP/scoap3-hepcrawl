@@ -71,7 +71,10 @@ class HindawiSpider(XMLFeedSpider):
     def start_requests(self):
         """Default starting point for scraping shall be the local XML file."""
         self.log('Harvest started.', logging.INFO)
-        yield Request(self.source_file)
+        headers = {
+            'User-Agent': 'curl/7.64.1'
+        }
+        yield Request(self.source_file, headers=headers)
 
     def parse_node(self, response, node):
         self.log('Parsing node...', logging.INFO)
